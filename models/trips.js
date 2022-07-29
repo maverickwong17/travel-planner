@@ -11,15 +11,15 @@ Trips.init(
             primaryKey: true,
             autoIncrement: true,
         },
-        trip_budget: {
+        trips_budget: {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        traveler_amount: {
+        travelers_amount: {
             type: DataTypes.INTEGER,
             allowNull: false,
         },
-        traveler_id: {
+        travelers_id: {
             type: DataTypes.INTEGER,
             allowNull: false,
             references: {
@@ -27,7 +27,7 @@ Trips.init(
                 key: "id",
             },
         },
-        location_id: {
+        locations_id: {
             type: DataTypes.STRING,
             allowNull: false,
             references: {
