@@ -11,27 +11,27 @@ Trip.init(
             primaryKey: true,
             autoIncrement: true,
         },
-        trips_budget: {
+        trip_budget: {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        travelers_amount: {
+        traveler_amount: {
             type: DataTypes.INTEGER,
             allowNull: false,
         },
-        travelers_id: {
+        traveler_id: {
             type: DataTypes.INTEGER,
             allowNull: false,
             references: {
-                model: "traveler",
+                model: "Traveler",
                 key: "id",
             },
         },
-        locations_id: {
+        location_id: {
             type: DataTypes.STRING,
             allowNull: false,
             references: {
-                model: "location",
+                model: "Location",
                 key: "id",
             },
         },
@@ -41,7 +41,7 @@ Trip.init(
         timestamps: false,
         freezeTableName: true,
         underscored: true,
-        modelName: 'trip',
+        modelName: 'Trip',
     }
 )
 

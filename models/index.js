@@ -1,25 +1,35 @@
-const Travelers = require("./travelers");
-const Locations = require("./locations");
-const Trips = require("./trips");
+const Traveler = require("./travelers");
+const Location = require("./locations");
+const Trip = require("./trips");
 
-Trips.hasMany(Locations, {
-    foreignKey: "location_id",
+// Trip.hasMany(Location, {
+//     foreignKey: "location_id",
+//     uniqueKey: false,
+// });
+
+// Trip.hasMany(Traveler, {
+//     foreignKey: "traveler_id",
+//     uniqueKey: false,
+// });
+
+// Traveler.belongsTo(Trip, {
+//     foreignKey: "trip_id",
+//     uniqueKey: false,
+// });
+
+// Location.belongsTo(Trip, {
+//     foreignKey: "trip_id",
+//     uniqueKey: false,
+// });
+
+Traveler.belongsToMany(Location, {
+    through: Trip, 
     uniqueKey: false,
-});
+})
 
-Trips.hasMany(Travelers, {
-    foreignKey: "traveler_id",
+Location.belongsToMany(Traveler, {
+    through: Trip,
     uniqueKey: false,
-});
+})
 
-Travelers.belongsTo(Trips, {
-    foreignKey: "trip_id",
-    uniqueKey: false,
-});
-
-Locations.belongsTo(Trips, {
-    foreignKey: "trip_id",
-    uniqueKey: false,
-});
-
-module.exports = { Travelers, Locations, Trips };
+module.exports = { Traveler, Location, Trip };
