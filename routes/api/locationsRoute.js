@@ -1,12 +1,12 @@
 const router = require('express').Router();
-const sequelize = require('../../config/connection');
-const { Location } = require('../../models');
+const { Location, Traveller, Trip } = require('../../models');
 
 router.get('/', async (req,res) =>{
     try {
-        const locationData = await Location.findAll({
-
-        });
+        const locationData = await Location.findAll();
+        console.log(locationData)
+        const locations = locationData.map((location) => location.get({ plain: true }));
+        console.log("locations", locations);
         res.status(200).json(locationData)
     } catch (err) {
         res.status(500).json(err);
@@ -16,7 +16,7 @@ router.get('/', async (req,res) =>{
 router.get('/:id', async (req,res) =>{
     try {
         const locationData = await Location.findByPK(req.params.id,{
-
+            include: [{ model: Traveller, through: Trip}]
         });
         if(!locationData){
             res.status(404).json({ message: "No location found with that ID!"})
